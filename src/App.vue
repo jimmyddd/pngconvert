@@ -31,7 +31,7 @@ async function startConvert() {
   try {
     result.value = await window.electronApi.convertImages({
       directoryPath: selectedDir.value,
-      sourceFormats: sourceFormats.value,
+      sourceFormats: [...sourceFormats.value],
       targetFormat: targetFormat.value,
     });
   } catch (error) {
