@@ -1,0 +1,48 @@
+{
+  "name": "pngconvert",
+  "private": true,
+  "version": "0.0.0",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "dev:vue": "vite",
+    "dev:electron": "electron .",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "electron .",
+    "pack:win": "npm run build && electron-builder --win portable",
+    "pack:mac": "npm run build && electron-builder --mac dmg",
+    "pack:mac:app": "npm run build && electron-builder --mac dir"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "webp-converter": "^2.3.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "concurrently": "^9.2.1",
+    "electron": "^22.3.27",
+    "electron-builder": "^24.13.3",
+    "vite": "^4.4.5",
+    "wait-on": "^9.0.5"
+  },
+  "build": {
+    "appId": "com.yjm.pngconvert",
+    "productName": "玥玥webp换png",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        "portable"
+      ]
+    }
+  }
+}
